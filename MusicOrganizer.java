@@ -10,6 +10,7 @@ public class MusicOrganizer
 {
     // An ArrayList for storing the file names of music files.
     private ArrayList<String> files;
+    private boolean validIndex;
         
     /**
      * Create a MusicOrganizer
@@ -17,6 +18,7 @@ public class MusicOrganizer
     public MusicOrganizer()
     {
         files = new ArrayList<String>();
+        validIndex = false;
     }
     
     /**
@@ -43,7 +45,8 @@ public class MusicOrganizer
      */
     public void listFile(int index)
     {
-        if(index >= 0 && index < files.size()) {
+        validIndex(index);
+        if(validIndex == true) {
             String filename = files.get(index);
             System.out.println(filename);
         }
@@ -55,23 +58,48 @@ public class MusicOrganizer
      */
     public void removeFile(int index)
     {
-        if(index >= 0 && index < files.size()) {
+        validIndex (index);
+        if(validIndex == true) {
             files.remove(index);
         }
     }
     
     /**
-     * 
+     * Este método toma un parámetro entero y comprueba que sea un índice válido para el atributo files. 
+     * Si el parámetro no es válido debe mostrar un mensaje de error por pantalla e indicar el rango válidoEste método toma un parámetro entero y comprueba que sea un índice válido para el atributo files.
+     * Si el parámetro no es válido debe mostrar un mensaje de error por pantalla e indicar el rango válido
      */
     public void chekindex (int index)
     {
-       if(index < 0 || index >= files.size()) {
+       if(index < 0 || index >= files.size()) 
+       {
             System.out.println("Error el rango valido es de 0 a " + files.size());
         } 
     }
     
     /**
-     * 
+     * Este método toma un parámetro entero y comprueba que sea un índice válido para el atributo files. Si el parámetro no es válido debe mostrar un mensaje de error por pantalla e indicar el rango válido
      */
+    public void validIndex(int index)
+      {
     
+        if(index < 0 || index >= files.size()) 
+        {
+            validIndex = true;
+        }
+        else
+        {
+           validIndex = false;
+        }
+    
+      }
+      
+      /**
+       *  nos da el valor de valid index 
+       */
+     public boolean getValidIndex()
+     {
+         return validIndex;
+     }
+         
 }
